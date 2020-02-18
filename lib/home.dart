@@ -68,45 +68,45 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: <Widget>[
                         FlatButton(
                           onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text("Warning"),
-                                    content: Text(
-                                        "Are you sure want to delete data profile ${profile.name}?"),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        child: Text("Yes"),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                          apiService
-                                              .deleteProfile(profile.id)
-                                              .then((isSuccess) {
-                                            if (isSuccess) {
-                                              setState(() {});
-                                              Scaffold.of(this.context)
-                                                  .showSnackBar(SnackBar(
-                                                  content: Text(
-                                                      "Delete data success")));
-                                            } else {
-                                              Scaffold.of(this.context)
-                                                  .showSnackBar(SnackBar(
-                                                  content: Text(
-                                                      "Delete data failed")));
-                                            }
-                                          });
-                                        },
-                                      ),
-                                      FlatButton(
-                                        child: Text("No"),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                      )
-                                    ],
-                                  );
-                                });
+showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text("Warning"),
+        content: Text(
+            "Are you sure want to delete data profile ${profile.name}?"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("Yes"),
+            onPressed: () {
+              Navigator.pop(context);
+              apiService
+                  .deleteProfile(profile.id)
+                  .then((isSuccess) {
+                if (isSuccess) {
+                  setState(() {});
+                  Scaffold.of(this.context)
+                      .showSnackBar(SnackBar(
+                      content: Text(
+                          "Delete data success")));
+                } else {
+                  Scaffold.of(this.context)
+                      .showSnackBar(SnackBar(
+                      content: Text(
+                          "Delete data failed")));
+                }
+              });
+            },
+          ),
+          FlatButton(
+            child: Text("No"),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )
+        ],
+      );
+});
                           },
                           child: Text(
                             "Delete",
